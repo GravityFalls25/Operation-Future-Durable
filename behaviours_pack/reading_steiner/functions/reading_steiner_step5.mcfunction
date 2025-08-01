@@ -1,0 +1,1 @@
+titleraw @a title {"rawtext":[{"text":"§e0.654321"}]}

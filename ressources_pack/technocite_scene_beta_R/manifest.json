@@ -1,0 +1,22 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "§c§l Scene ressource pack",
+		"description": "Technocite_scene_ressource_beta",
+		"uuid": "9657ad31-d8ad-4712-a9d2-8e2a485c74cd",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 21, 0]
+	},
+	"metadata": {
+		"authors": ["thib"]
+
+	},
+	"modules": [
+		{
+			"description": "scene",
+			"type": "resources",
+			"uuid": "86b00eed-b283-4ad4-b3ac-c53cb44ffefc",
+			"version": [1, 0, 0]
+		}
+	]
+}

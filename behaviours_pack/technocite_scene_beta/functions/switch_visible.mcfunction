@@ -1,0 +1,2 @@
+execute as @e[type=technocite:visible_flying_point,name=point1] at @s run summon technocite:flying_point point1
+execute as @e[type=technocite:visible_flying_point,name=point2] at @s run summon technocite:flying_point point2

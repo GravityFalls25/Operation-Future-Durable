@@ -1,0 +1,29 @@
+{
+	"format_version": 2,
+	"header": {
+		"description": "§c§l Scene mod",
+		"name": "Technocite_scene_mod_beta",
+		"uuid": "f71e3f21-ef8e-4db0-aead-c31a4afc2780",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 21, 0]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "c103d2a5-c6fe-428a-8125-3b9126ec2e9c",
+			"version": [1, 0, 0]
+		}
+	],
+	  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "1.10.0-beta"
+    }
+  ],
+ "capabilities": ["script_eval"],
+
+
+	"metadata": {
+		"authors": ["Thibaut Windal"]
+	}
+}

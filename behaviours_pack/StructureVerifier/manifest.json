@@ -1,0 +1,35 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "Structure Verifier Pack",
+    "name": "Structure Verifier",
+    "uuid": "d5d326c1-81de-4a23-a40d-ac7dbab33f59",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 0]
+  },
+  "modules": [
+    {
+            "description": "Behavior",
+            "version": [
+                1,
+                0,
+                4
+            ],
+            "uuid": "632e6944-1b81-4527-9c82-68662334faee",
+            "type": "data"
+        },
+    {
+      "description": "Server Script",
+      "type": "script",
+      "uuid": "4bab9211-f87f-4332-add2-e6b4404c27f3",
+      "version": [1, 0, 0],
+      "entry": "scripts/index.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "1.5.0"
+    }
+  ]
+}

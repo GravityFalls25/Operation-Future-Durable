@@ -1,44 +1,57 @@
 import { world, system } from "@minecraft/server";
 
+system.afterEvents.scriptEventReceive.subscribe(ev => {
+  if (ev.id == "eko:VerifyStructure") {
+    verifyStructure();
+    world.sendMessage("Vérification de la structure lancée !");
+  }
+});
+const checkers = [
+        { tag: "temp_checker", prefix: "degre_", label: "Température", unit: "C°" },
+        { tag: "energy_checker", prefix: "energie_", label: "Énergie", unit: "Wh" },
+        { tag: "water_checker", prefix: "eau_", label: "Eau perdue", unit: "L" } // unité à ajuster
+    ];
 world.beforeEvents.itemUse.subscribe((event) => {
   const player = event.source;
   const item = event.itemStack;
-
-    // ✅ Vérifier le tag du joueur
-  if (!player.getTags().includes("canVerify")) {
-    return; // Pas autorisé
-  }
+  
 
   if (event.itemStack && event.itemStack.typeId === "minecraft:fishing_rod") {
     event.cancel = true;
 
     system.run(() => {
-      verifyStructure(player);
       verifyChests(player);
     });
   }
-  else if (item && item.typeId === "minecraft:stick") {
+  else if (item && item.typeId === "operation_future_durable:thermometre") {
     event.cancel = true;
 
     system.run(() => {
-      showRoomTemperature(player);
+       showRoomData(player,checkers[0]);
     });
   }
-  else if (item && item.typeId === "minecraft:compass") {
+  else if (item && item.typeId === "operation_future_durable:multimetre") {
     event.cancel = true;
 
     system.run(() => {
-      showRoomEnergy(player);
+      showRoomData(player,checkers[1]);
+    });
+  }
+  else if (item && item.typeId === "operation_future_durable:compteur_eau") {
+    event.cancel = true;
+
+    system.run(() => {
+      showRoomData(player,checkers[2]);
     });
   }
 });
 
-function verifyStructure(player) {
+function verifyStructure() {
   const dim = world.getDimension("overworld");
   const stands = dim.getEntities({ type: "minecraft:armor_stand", tags: ["checker"] });
 
   if (stands.length === 0) {
-    player.runCommand("/say ❌ Aucun armor stand 'checker' trouvé !");
+    world.sendMessage("/say Aucun armor stand 'checker' trouvé !");
     return;
   }
 
@@ -48,8 +61,8 @@ function verifyStructure(player) {
   for (let x = 0; x < 22; x++) {
     for (let y = 0; y < 29; y++) {
       for (let z = 0; z < 6; z++) {
-        const posA = { x: Math.floor(origin.x) + x, y: Math.floor(origin.y) + y, z: Math.floor(origin.z) + z };
-        const posB = { x: Math.floor(origin.x) + 100 + x, y: Math.floor(origin.y) + y, z: Math.floor(origin.z) + z };
+        const posA = { x: Math.floor(origin.x) + x, y: Math.floor(origin.y) +38+ y, z: Math.floor(origin.z) + z };
+        const posB = { x: Math.floor(origin.x) + x, y: Math.floor(origin.y)  + y, z: Math.floor(origin.z) + z };
 
         const blockA = dim.getBlock(posA);
         const blockB = dim.getBlock(posB);
@@ -74,9 +87,14 @@ function verifyStructure(player) {
   }
 
   if (allGood) {
-    player.runCommand("/say Structure correcte !");
+    world.sendMessage(" Structure correcte !");
+    system.runTimeout(async () => {
+        await world.getDimension("overworld").runCommandAsync(
+          `scriptevent eko:s_2_4_2`
+        );
+      }, 50);
   } else {
-    player.runCommand("/say Structure incorrecte !");
+    world.sendMessage("Structure incorrecte !");
   }
 }
 function verifyChests(player) {
@@ -180,6 +198,63 @@ function verifyChests(player) {
     player.runCommand("/say ❌ Des coffres sont incorrects !");
   }
 }
+
+function showRoomData(player, checker) {
+    const dim = world.getDimension("overworld");
+
+    const nearbyStands = dim.getEntities({
+        location: player.location,
+        maxDistance: 4,
+        type: "operation_future_durable:marker",
+        tags: [checker.tag]
+    });
+
+    if (nearbyStands.length === 0) {
+        player.runCommand(`say Aucune donnée ici.`);
+        return;
+    }
+
+    const stand = nearbyStands[0];
+
+    // Tag contextuel
+    const contextTags = ["fenetre", "lampe", "electromenager", "evier", "toit", "television"];
+    const contextTag = stand.getTags().find(t => contextTags.includes(t));
+
+    // Message narratif
+    if (contextTag) {
+        switch (contextTag) {
+            case "fenetre":
+                player.runCommand(`say Il fait froid près de la fenêtre. Pense à vérifier l'isolation !`);
+                break;
+            case "lampe":
+                player.runCommand(`say La lampe est allumée en permanence, attention à l'énergie !`);
+                break;
+            case "electromenager":
+                player.runCommand(`say Il est important de regarder à la consommation des vieux appareils, ce four ancien consomme beaucoup trop !`);
+                break;
+            case "evier":
+                player.runCommand(`say L'évier est ouvert, de l'eau est perdue !`);
+                break;
+            case "toit":
+                player.runCommand(`say Il fait chaud près du toit, attention à la chaleur !`);
+                break;
+            case "television":
+                player.runCommand(`say La télévision et les consoles de jeux consomment de l'énergie, même en veille, pense à l'éteindre !`);
+                break;
+            default:
+                player.runCommand(`say Il y a un objet détecté.`);
+        }
+    } else {
+        player.runCommand(`say Aucun objet spécifique détecté.`);
+    }
+    system.runTimeout(async () => {
+            await dim.runCommandAsync(`scriptevent eko:a_2_${contextTag}`); 
+          }, 10);
+    world.sendMessage(`scriptevent eko:a_2_${contextTag}`);
+  
+}
+
+
 
 function showRoomTemperature(player) {
   const dim = world.getDimension("overworld");

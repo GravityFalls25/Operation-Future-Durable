@@ -1,0 +1,11 @@
+entity.operation_future_durable:eko.name=eko
+item.spawn_egg.entity.operation_future_durable:eko.name=Spawn eko
+entity.operation_future_durable:marker.name=marker
+item.spawn_egg.entity.operation_future_durable:marker.name=Spawn marker
+
+item.operation_future_durable:thermometre=Thermometre
+item.operation_future_durable:multimetre=Multimetre
+item.operation_future_durable:compteur_eau=Compteur d'eau
+
+item.spawn_egg.entity.operation_future_durable:eko_controlled.name=Spawn eko controlé
+entity.operation_future_durable:eko_controlled.name=eko controlé

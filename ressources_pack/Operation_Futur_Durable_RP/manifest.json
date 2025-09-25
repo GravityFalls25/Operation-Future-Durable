@@ -1,0 +1,24 @@
+{
+	"format_version": 2,
+	"header": {
+		"description": "Operation Futur Durable RP",
+		"name": "Operation Futur Durable RP",
+		"uuid": "a2329408-5c3e-42a5-8d76-516ea2c591a4",
+		"version": [1, 0, 2],
+		"min_engine_version": [1, 21,0]
+	},
+	"modules": [
+		{
+			"description": "Resource",
+			"type": "resources",
+			"version": [1, 0, 0],
+			"uuid": "e0a61673-1f6f-4d4a-9400-3b3403aec23d"
+		}
+	],
+	"metadata": {
+		"authors": ["Thib"],
+		"generated_with": {
+			"blockbench_entity_wizard": ["1.7.0"]
+		}
+	}
+}

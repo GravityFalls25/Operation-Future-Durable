@@ -1,0 +1,15 @@
+{
+	"resource_pack_name": "Operation_Futur_Durable_RP",
+	"texture_name": "atlas.items",
+	"texture_data": {
+		"operation_future_durable:thermometre": {
+			"textures": "textures/items/thermometre"
+		},
+		"operation_future_durable:multimetre": {
+			"textures": "textures/items/multimetre"
+		},
+		"operation_future_durable:compteur_eau": {
+			"textures": "textures/items/compteur_eau"
+		}
+	}
+}

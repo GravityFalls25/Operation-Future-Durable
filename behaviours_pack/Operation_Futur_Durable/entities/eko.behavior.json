@@ -1,0 +1,62 @@
+{
+  "format_version": "1.21.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "operation_future_durable:eko",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "components": {
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": true
+      },
+      "minecraft:pushable": {
+        "is_pushable": false
+      },
+      "minecraft:push_through": {
+        "value": 1
+      },
+      "minecraft:npc": {
+        "value": true
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 1,
+        "look_distance": 10,
+        "probability": 1.0,
+        "angle_of_view_horizontal": 360,
+        "angle_of_view_vertical": 360
+      },
+
+      "minecraft:cannot_be_attacked": {},
+
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": "no"
+          }
+        ]
+      },
+
+      "minecraft:knockback_resistance": {
+        "value": 1.0
+      },
+
+      "minecraft:health": {
+        "value": 1000,
+        "max": 1000
+      },
+
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.8
+      },
+
+      "minecraft:interact": {
+        "interactions": []
+      }
+    }
+  }
+}

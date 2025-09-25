@@ -1,0 +1,33 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.eko.idle": {
+			"loop": true,
+			"animation_length": 6,
+			"bones": {
+				"Elice": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"6.0": [0, 540, 0]
+					}
+				},
+				"Eko": {
+					"position": {
+						"0.0": {
+							"post": [0, 15, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"3.0": {
+							"post": [0, 16, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"6.0": {
+							"post": [0, 15, 0],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				}
+			}
+		}
+	}
+}

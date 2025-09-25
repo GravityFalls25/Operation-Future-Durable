@@ -1,0 +1,831 @@
+{
+  "format_version": "1.14.0",
+  "minecraft:npc_dialogue": {
+    "scenes": [
+      {
+        "scene_tag": "s_0_0_0",
+        "npc_name": "EKO",
+        "text": "Est ce que tout le monde est prêt ?",
+        "buttons": [
+          {
+            "name": "Oui",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_0"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_1_1",
+        "npc_name": "EKO",
+        "text": "Hello ? Il y a quelqu’un ?",
+        "buttons": [
+          {
+            "name": "Ouvrir",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_1"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_2_1",
+        "npc_name": "EKO",
+        "text": "Ouch ! … Ah, bonjour ! Moi c’est EKO ! Enfin, Environnemental… Kinetic… Optimizer… Trop long. Dis juste EKO.",
+        "buttons": [
+          {
+            "name": "Un problème ?",
+            "commands": [
+              "/dialogue open @s @initiator s_1_2_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_2_2",
+        "npc_name": "EKO",
+        "text": "Oui ! Exactement ! À force de ne pas faire attention, les humains ont rendu la planète invivable. Pas de panique ! Enfin… si, un peu de panique quand même.",
+        "buttons": [
+          {
+            "name": "Aucun espoir ?",
+            "commands": [
+              "/dialogue open @s @initiator s_1_2_3"
+            ]
+          },
+          {
+            "name": "Que faire ?",
+            "commands": [
+              "/dialogue open @s @initiator s_1_2_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_2_3",
+        "npc_name": "EKO",
+        "text": "Oh, bien sûr qu’il y a de l’espoir ! Sinon je ne serais pas là. Et vous… vous pouvez m’aider. Enfin… si vous voulez bien.",
+        "buttons": [
+          {
+            "name": "Bien sûr",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_2"
+            ]
+          },
+          {
+            "name": "Hum… ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_3_1",
+        "npc_name": "EKO",
+        "text": "Regarde patron ! J’ai ramené les deux meilleurs scientifiques de la Terre !",
+        "buttons": [
+          {
+            "name": "Quoi ??",
+            "commands": [
+              "/dialogue open @e[type=npc,r=10] @initiator s_1_3_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_3_2",
+        "npc_name": "Scientifique",
+        "text": "Comment ça vous n'êtes pas des scientifiques ? Eko ! Je t'avais dit de ramener des scientifiques ! Bon… ça fera l’affaire, on n’a plus le temps. Voyez-vous, nous avons besoin d’agents pour empêcher plusieurs catastrophes. Et selon nos calculs, en 2025, il est encore possible d’y arriver.",
+        "buttons": [
+          {
+            "name": "Compris !",
+            "commands": [
+              "/dialogue open @s @initiator s_1_3_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_3_3",
+        "npc_name": "Scientifique",
+        "text": "Avant toute chose, vérifions que vous savez bouger correctement. EKO emmène les",
+        "buttons": [
+          {
+            "name": "D'accord, montrez-moi !",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_4_1",
+        "npc_name": "EKO",
+        "text": "Très bien, suivez-moi ! On commence par un petit exercice de déplacement. Je vais vous donner des instructions et une fois que vous l'aurez fait, clique droit sur moi et puis sur le bouton \"Valider\" pour continuer.",
+        "buttons": [
+          {
+            "name": "Valider",
+            "commands": [
+              "/dialogue open @s @initiator s_1_4_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_4_2",
+        "npc_name": "EKO",
+        "text": "Étape 1 — Bouger la vue : déplace ta souris, et suis moi, clique droit sur moi quand j'arrete de bouger",
+        "buttons": [
+          {
+            "name": "Valider",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_4"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_5_1",
+        "npc_name": "EKO",
+        "text": "Très bien, on continue",
+        "buttons": [
+          {
+            "name": "Valider",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_5"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_6_1",
+        "npc_name": "EKO",
+        "text": "Super, la souris, c'est bon, on peut passer à la suite",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/dialogue open @s @initiator s_1_6_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_6_2",
+        "npc_name": "EKO",
+        "text": "Étape 2 — Marcher : utilise les touches de déplacement pour me suivre dans le labyrinthe, z avancer, q gauche, d droite, s reculer",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_6"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_7_1",
+        "npc_name": "EKO",
+        "text": "Super, les déplacements, c'est bon, on peut passer à la suite",
+        "buttons": [
+          {
+            "name": "Valider",
+            "commands": [
+              "/dialogue open @s @initiator s_1_7_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_7_2",
+        "npc_name": "EKO",
+        "text": "Étape 3 — Sauter : appuie sur la barre espace pour sauter par-dessus le petit obstacle.",
+        "buttons": [
+          {
+            "name": "Valider",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_7"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_8_1",
+        "npc_name": "EKO",
+        "text": "Super, tu sais sauter !",
+        "buttons": [
+          {
+            "name": "Valider",
+            "commands": [
+              "/dialogue open @s @initiator s_1_8_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_8_2",
+        "npc_name": "EKO",
+        "text": "Bon eh bien, je pense que tout est bon, on peut retourner au labo, ouvre cette porte et appuie sur le bouton, utilise le clique droit de ta souris pour interragir",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": []
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_9_1",
+        "npc_name": "Scientifique",
+        "text": "Très bien. Je vais vous montrer l'extérieur",
+        "buttons": [
+          {
+            "name": "On est prêt",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_1_9"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_1_10_1",
+        "npc_name": "EKO",
+        "text": "Regardez la ville : usines à charbon, rues polluées, eaux sales… Voici le premier problème que nous allons attaquer : la production d'énergie.",
+        "buttons": [
+          {
+            "name": "Oui",
+            "commands": [
+               "/dialogue open @s @initiator s_1_10_2"
+            ]
+          }
+        ]
+      },
+       {
+        "scene_tag": "s_1_10_2",
+        "npc_name": "EKO",
+        "text": "Suivez moi",
+        "buttons": [
+          {
+            "name": "Compris !",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_2_0"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_1_1",
+        "npc_name": "EKO",
+        "text": "Mission : Retournez dans le temps et remplacez la centrale au charbon par une solution plus propre. EKO vous guidera sur les étapes de construction. Bonne chance, agents !",
+        "buttons": [
+          {
+            "name": "Démarrer",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_2_1"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_2_1",
+        "npc_name": "EKO",
+        "text": "Nous revoici en 2025, nous devons trouver un autre moyen plus propre pour produire de l'électricité. ",
+        "buttons": [
+          {
+            "name": "Oui",
+            "commands": [
+              "/dialogue open @s @initiator s_2_2_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_2_2",
+        "npc_name": "EKO",
+        "text": "Attends le formateur avant de continuer. Il te donnera le code pour continuer.",
+        "buttons": [
+          {
+            "name": "eqwzsxedc",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le formateur !"
+            ]
+          },
+          {
+            "name": "pmolikuj",
+            "commands": [
+              "/dialogue open @s @initiator s_2_2_4"
+            ]
+          },
+          {
+            "name": "azerty",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le formateur !"
+            ]
+          },
+          {
+            "name": "741852963",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le formateur !"
+            ]
+          },
+          {
+            "name": "poi987mlk",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le formateur !"
+            ]
+          },
+          {
+            "name": "123mlk654",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le formateur !"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_2_4",
+        "npc_name": "EKO",
+        "text": "Allons derriere la centrale pour construire une éolienne. ",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_2_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_3_1",
+        "npc_name": "EKO",
+        "text": "Voila ici ce sera l'endroit idéal pour construire une éolienne. La base de l'éolienne doit reposer sur les blocs de cuivre (les blocs un peu orange). Utilise les blocs se trouvant dans le coffre à coté de moi, attention a bien respecter les dimensions et les blocs utilisés. Si tu veux recommencer ou valider l'éolienne, reclique sur moi. Si tu as un souci, tu peux demander de l'aide au formateur.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_2_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_4_1",
+        "npc_name": "EKO",
+        "text": "Que veux tu ?",
+        "buttons": [
+          {
+            "name": "Reset",
+            "commands": [
+              "/fill 994 -5 2174 1016 24 2179 air",
+              "/clone 993 -10 2174 994 -10 2174 993 -5 2174",
+              "/clear @a"
+            ]
+          },
+          {
+            "name": "Valider",
+            "commands": [
+              "/scriptevent eko:VerifyStructure"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_4_2",
+        "npc_name": "EKO",
+        "text": "Super ! Tu es vraiment super doué pour ça ! ",
+        "buttons": [
+          {
+            "name": "Merci !",
+            "commands": [
+              "/dialogue open @s @initiator s_2_4_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_4_3",
+        "npc_name": "EKO",
+        "text": "Mais maintenant, il faudrait qu'on en ait plus comme ça, pour cela, il faudrait que tu dessines le plan de l'éolienne que tu viens de faire. Tu peux prendre une feuille et un crayon ou en demander au formateur. Une fois que c'est fait, tu peux lui donner et il pourra me le transmettre via son ordinateur.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/dialogue change @s s_2_4_4"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_4_4",
+        "npc_name": "EKO",
+        "text": "Une fois que ton plan sera correct, tu pourras le donner au formateur sans oublier de mettre ton nom dessus. Il te donnera le code pour continuer !",
+        "buttons": [
+          {
+            "name": "igjpvj",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le bon code du formateur !"
+            ]
+          },
+          {
+            "name": "ytrhgjy",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le bon code du formateur !"
+            ]
+          },
+          {
+            "name": "dcsbg",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le bon code du formateur !"
+            ]
+          },
+          {
+            "name": "74lf",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le bon code du formateur !"
+            ]
+          },
+          {
+            "name": "qsdf",
+            "commands": [
+              "/dialogue open @s @initiator s_2_4_5"
+            ]
+          },
+          {
+            "name": "cbutf",
+            "commands": [
+              "/say §cAttention, je vois bien que tu essayes d'aller trop vite, attends le bon code du formateur !"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_4_5",
+        "npc_name": "EKO",
+        "text": "C'est parfait !! Je vais pouvoir en construire plein d'autres maintenant ! Merci beaucoup pour ton aide, vous êtes de vrais héros pour la planète !",
+        "buttons": [
+          {
+            "name": "Merci",
+            "commands": [
+              "/dialogue open @s @initiator s_2_4_6"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_4_6",
+        "npc_name": "EKO",
+        "text": "Retournons en 2100 voir l'impact que cela à eu !",
+        "buttons": [
+          {
+            "name": "Allons y",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_2_4"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_5_1",
+        "npc_name": "EKO",
+        "text": "Regarde toutes ces éoliennes ! Il semblerait que le brouillard ait disparu aussi ! La planète va mieux déjà ! On est sur la bonne voie !",
+        "buttons": [
+          {
+            "name": "Super !",
+            "commands": [
+              "/dialogue open @s @initiator s_2_5_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_5_2",
+        "npc_name": "EKO",
+        "text": "Ne nous arretons pas en si bon chemin, suis moi jusqu'à la maison la bas, je vais vous montrer un autre problème.",
+        "buttons": [
+          {
+            "name": "Super !",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_2_5"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_6_2",
+        "npc_name": "EKO",
+        "text": "Nous voici devant une maison typique de 2025. Nous allons devoir identifier les problèmes environnementaux qu'elle présente.",
+        "buttons": [
+          {
+            "name": "ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_3_0"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_1_1",
+        "npc_name": "EKO",
+        "text": "Mission : Vous allez devoir rentrer dans la maison et utiliser differents outils : Un thermometre pour mesurer la temperature et un multimetre pour calculer les pertes d'energies. Vous devrez trouver 3 elements problematiques. Une fois que vous les aurez trouvé, revenez me voir.",
+        "buttons": [
+          {
+            "name": "Démarrer ",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_3_1"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_3_1",
+        "npc_name": "EKO",
+        "text": "Vous êtes absolument incroyable ! Revenons en 2100 pour voir l'impact de vos actions.",
+        "buttons": [
+          {
+            "name": "Go",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_3_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_4_1",
+        "npc_name": "EKO",
+        "text": "Regarde les maisons tout autour de nous sont devenu ecoresponsables, on voit meme que sur certaine, ils ont des potager sur le toit.",
+        "buttons": [
+          {
+            "name": "Incroyable",
+            "commands": [
+              "/dialogue open @s @initiator s_3_4_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_4_2",
+        "npc_name": "EKO",
+        "text": "Prêt pour la suite ? Il est temps de nettoyer la riviere ! Suis moi.",
+        "buttons": [
+          {
+            "name": "Allons y",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_3_4"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_5_2",
+        "npc_name": "EKO",
+        "text": "Regarde l'eau, elle est pleine de produit chimique. Nous devons faire quelque chose !",
+        "buttons": [
+          {
+            "name": "Oui",
+            "commands": [
+              "/dialogue open @s @initiator s_3_5_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_5_3",
+        "npc_name": "EKO",
+        "text": "Retour en 2025 !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_3_5"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_6_1",
+        "npc_name": "EKO",
+        "text": "Regarde, ils avaient déjà commencé à en rejeter, il faut arreter ça",
+        "buttons": [
+          {
+            "name": "Que fait on ?",
+            "commands": [
+              "/dialogue open @s @initiator s_3_6_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_6_2",
+        "npc_name": "EKO",
+        "text": "On va s'infiltrer dans l'usine et tu me guideras dans les canalisations pour retirer tous les produits chimiques. Suis moi !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_3_6"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_3_7_1",
+        "npc_name": "EKO",
+        "text": "Ok commençons le nettoyage !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_4_0"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_1_1",
+        "npc_name": "EKO",
+        "text": "Ah on va avoir un probleme, à cette époque, il est impossible de voir les canalisations. Impossible de deviner le trajet que je dois prendre",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/dialogue open @s @initiator s_4_1_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_1_2",
+        "npc_name": "EKO",
+        "text": "Vous allez vous séparer, un ira en 2100 où les canalisations seront surement devenue visible, l'autre restera en 2025 pour me guider dans les canalisations. Vous devrez communiquer entre vous pour réussir cette mission.",
+        "buttons": [
+          {
+            "name": "2100",
+            "commands": [
+              "/tp @initiator ~1000 ~ ~-1000"
+            ]
+          },
+          {
+            "name": "2025",
+            "commands": []
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_1_3",
+        "npc_name": "EKO",
+        "text": "OK en effet ici on voit bien le chemin, Il va falloir que tu donnes les indications à ton coéquipier pour qu'il puisse me guider.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/dialogue open @s @initiator s_4_1_4"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_1_4",
+        "npc_name": "EKO",
+         "text": "Le block bleu clair c'est pour me dire d'avancer, le bleu foncé c'est pour me dire de tourner à gauche et le vert de tourner à droite. Vous pouvez communiquer entre vous comme vous le souhaitez, soit via les messages sur Minecraft (appuie sur T puis ecris ton message puis ENTER) soit avec du papier et du crayon.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/dialogue open @s @initiator s_4_1_5"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_1_5",
+        "npc_name": "EKO",
+        "text": "Tu peux toujours revenir dans le présent si tu veux",
+        "buttons": [
+          {
+            "name": "2100",
+            "commands": []
+          },
+          {
+            "name": "2025",
+            "commands": [
+              "/tp @initiator ~-1000 ~ ~1000"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_1_6",
+        "npc_name": "EKO",
+        "text": "Quand veux tu aller ?",
+        "buttons": [
+          {
+            "name": "2100",
+            "commands": [
+              "/tp @initiator ~1000 ~ ~-1000"
+            ]
+          },
+          {
+            "name": "2025 (ici)",
+            "commands": []
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_1_7",
+        "npc_name": "EKO",
+        "text": "Quand veux tu aller ?",
+        "buttons": [
+          {
+            "name": "2100 (ici)",
+            "commands": []
+          },
+          {
+            "name": "2025",
+            "commands": [
+              "/tp @initiator ~-1000 ~ ~1000"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "s_4_2_1",
+        "npc_name": "EKO",
+        "text": "Super ! Passons au niveau suivant !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_4_1"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_3_1",
+        "npc_name": "EKO",
+        "text": "Super ! Passons au niveau suivant !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_4_1"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_4_1",
+        "npc_name": "EKO",
+        "text": "Super ! Passons au niveau suivant !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_4_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_5_1",
+        "npc_name": "EKO",
+        "text": "Super ! Passons au niveau suivant !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_4_3"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

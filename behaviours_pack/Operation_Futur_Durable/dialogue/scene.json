@@ -1,0 +1,290 @@
+{
+  "format_version": "1.17",
+  "minecraft:npc_dialogue": {
+    "scenes": [
+      {
+        "scene_tag": "scene1_start",
+        "npc_name": "EKO",
+        "text": "Hello ? Il y a quelqu’un ?",
+        "buttons": [
+          {
+            "name": "Ouvrir la porte",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:checkpoint_intro_p1"
+
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene1_intro",
+        "npc_name": "EKO",
+        "text": "Ouch ! … Ah, bonjour ! Moi c’est EKO ! Enfin, Environnemental… Kinetic… Optimizer… Trop long. Dis juste EKO.",
+        "buttons": [
+          {
+            "name": "Un problème ?",
+            "commands": [
+              "/dialogue open @s @initiator scene1_problem"
+            ]
+          },
+          {
+            "name": "La planète entière ?!",
+            "commands": [
+              "/dialogue open @s @initiator scene1_problem"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene1_problem",
+        "npc_name": "EKO",
+        "text": "Oui ! Exactement ! À force de ne pas faire attention, les humains ont rendu la planète invivable. Pas de panique ! Enfin… si, un peu de panique quand même.",
+        "buttons": [
+          {
+            "name": "Mais… il n’y a plus d’espoir ?",
+            "commands": [
+              "/dialogue open @s @initiator scene1_hope"
+            ]
+          },
+          {
+            "name": "Et moi, je peux faire quoi ?",
+            "commands": [
+              "/dialogue open @s @initiator scene1_hope"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene1_hope",
+        "npc_name": "EKO",
+        "text": "Oh, bien sûr qu’il y a de l’espoir ! Sinon je ne serais pas là. Et vous… vous pouvez m’aider. Enfin… si vous voulez bien.",
+        "buttons": [
+          {
+            "name": "Bien sûr, allons-y",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:checkpoint_intro_p1",
+              "/dialogue open @s @initiator scene2_scientist_intro"
+            ]
+          },
+          {
+            "name": "Hum… oui ok, si c’est pour la planète",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:checkpoint_intro_p1",
+              "/dialogue open @s @initiator scene2_scientist_intro"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene2_scientist_intro",
+        "npc_name": "EKO",
+        "text": "Regarde patron ! J’ai ramené les deux meilleurs scientifiques de la Terre !",
+        "buttons": [
+          {
+            "name": "Hein ? Mais on n’est pas des scientifiques !",
+            "commands": [
+              "/dialogue open @s @initiator scene2_scientist_reply"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene2_scientist_reply",
+        "npc_name": "Scientifique",
+        "text": "Bon… ça fera l’affaire, on n’a plus le temps. Voyez-vous, nous avons besoin d’agents pour empêcher plusieurs catastrophes. Et selon nos calculs, en 2025, il est encore possible d’y arriver.",
+        "buttons": [
+          {
+            "name": "Compris !",
+            "commands": [
+              "/dialogue open @s @initiator scene3_tuto_intro"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene3_tuto_intro",
+        "npc_name": "Scientifique",
+        "text": "Avant toute chose, vérifions que vous savez bouger correctement.",
+        "buttons": [
+          {
+            "name": "D'accord, montrez-moi !",
+            "commands": [
+              "/dialogue open @s @initiator scene3_followeko"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene3_followeko",
+        "npc_name": "EKO",
+        "text": "Très bien, suivez-moi ! On commence par un petit exercice de déplacement. Faites chaque action dans le jeu, puis validez en cliquant sur le bouton \"J'ai fait\".",
+        "buttons": [
+          {
+            "name": "Prêt !",
+            "commands": [
+              "/dialogue open @s @initiator scene3_step1_look"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene3_step1_look",
+        "npc_name": "EKO",
+        "text": "Étape 1 — Bouger la vue : déplace ta souris, regarde à gauche puis à droite. Quand tu as regardé autour, clique \"J'ai regardé\".",
+        "buttons": [
+          {
+            "name": "J'ai regardé",
+            "commands": [
+              "/dialogue open @s @initiator scene3_step2_walk"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene3_step2_walk",
+        "npc_name": "EKO",
+        "text": "Étape 2 — Marcher : utilise les touches de déplacement (Z Q S D ou W A S D selon la config). Avance quelques pas, recule, puis clique le bouton correspondant.",
+        "buttons": [
+          {
+            "name": "J'ai avancé",
+            "commands": [
+              "/dialogue open @s @initiator scene3_step3_jump"
+            ]
+          },
+          {
+            "name": "J'ai reculé",
+            "commands": [
+              "/dialogue open @s @initiator scene3_step3_jump"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene3_step3_jump",
+        "npc_name": "EKO",
+        "text": "Étape 3 — Sauter : appuie sur la barre espace pour sauter par-dessus le petit obstacle. Une fois en haut, clique \"J'ai sauté\".",
+        "buttons": [
+          {
+            "name": "J'ai sauté",
+            "commands": [
+              "/dialogue open @s @initiator scene3_step4_interact"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene3_step4_interact",
+        "npc_name": "EKO",
+        "text": "Étape 4 — Interagir : clique droit sur la porte ou actionne le levier devant toi pour l'ouvrir. Ensuite clique \"J'ai ouvert la porte\".",
+        "buttons": [
+          {
+            "name": "J'ai ouvert la porte",
+            "commands": [
+              "/dialogue open @s @initiator scene3_step5_plant"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene3_step5_plant",
+        "npc_name": "EKO",
+        "text": "Étape 5 — Planter : voici une graine. Place-la dans le bac indiqué pour planter un petit arbre. Puis clique \"J'ai planté la graine\".",
+        "buttons": [
+          {
+            "name": "J'ai planté la graine",
+            "commands": [
+              "/dialogue open @s @initiator scene3_tuto_complete"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene3_tuto_complete",
+        "npc_name": "EKO",
+        "text": "Magnifique ! Tu sais marcher, sauter, ouvrir des portes et planter des arbres. Tu es officiellement plus utile que 90 % des robots que je connais (et eux, ils font la danse de la maintenance).",
+        "buttons": [
+          {
+            "name": "Allons voir l'extérieur",
+            "commands": [
+              "/dialogue open @s @initiator scene4_cinematic_start"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene4_cinematic_start",
+        "npc_name": "Scientifique",
+        "text": "Très bien. Je vais vous montrer l'extérieur. Restez groupés et observez bien : c'est pour vous motiver, pas pour vous effrayer. Enfin… un peu peut-être.",
+        "buttons": [
+          {
+            "name": "Je suis prêt",
+            "commands": [
+              "/dialogue open @s @initiator scene4_cinematic"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene4_cinematic",
+        "npc_name": "EKO",
+        "text": "Regardez la ville : usines à charbon, rues polluées, eaux sales… Voici le premier problème que nous allons attaquer : la production d'énergie.",
+        "buttons": [
+          {
+            "name": "Compris, on commence !",
+            "commands": [
+              "/dialogue open @s @initiator scene_mission_coal"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "scene_mission_coal",
+        "npc_name": "Scientifique",
+        "text": "Mission : remplacez la centrale au charbon par une solution plus propre. EKO vous guidera sur les étapes de construction et les objectifs FMTTN. Bonne chance, agents !",
+        "buttons": [
+          {
+            "name": "Démarrer la mission",
+            "commands": [
+              "/say Début de la mission : Centrale au charbon (à configurer en jeu)",
+              "/dialogue open @s @initiator end"
+            ]
+          }
+        ]
+      },
+
+      {
+        "scene_tag": "end",
+        "npc_name": "EKO",
+        "text": "Dialogue terminé. Bon jeu !",
+        "buttons": [
+          {
+            "name": "Fermer",
+            "commands": [
+              "/say Bon jeu !"
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

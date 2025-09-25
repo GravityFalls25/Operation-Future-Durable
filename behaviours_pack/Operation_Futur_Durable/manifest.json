@@ -1,0 +1,36 @@
+{
+	"format_version": 2,
+	"header": {
+		"description": "Operation Futur Durable",
+		"name": "Operation Futur Durable",
+		"uuid": "18b27de8-446d-44ae-8409-9c5eb91343d0",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 20, 0]
+	},
+	"modules": [
+		{
+			"description": "Behavior",
+			"version": [1, 0, 4],
+			"uuid": "610d38d0-ff81-4ed4-8eda-7ea710c6a0fc",
+			"type": "data"
+		},
+		{
+			"description": "Server Script",
+			"type": "script",
+			"uuid": "c7f0255c-a53b-42fd-aef0-ffef81d27bd3",
+			"version": [1, 0, 0],
+			"entry": "scripts/index.js"
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.5.0"
+		}
+	],
+	"metadata": {
+		"generated_with": {
+			"blockbench_entity_wizard": ["1.7.0"]
+		}
+	}
+}

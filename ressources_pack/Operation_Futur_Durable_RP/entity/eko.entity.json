@@ -1,0 +1,33 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "operation_future_durable:eko",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/eko"
+      },
+      "geometry": {
+        "default": "geometry.eko"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ],
+      "animations": {
+        "controller": "controller.animation.eko.general",
+        "animation.eko.idle": "animation.eko.idle"
+      },
+      "scripts": {
+        "animate": [
+          "controller"
+        ]
+      },
+      "spawn_egg": {
+        "base_color": "#ffffff",
+        "overlay_color": "#00e8ff"
+      }
+    }
+  }
+}

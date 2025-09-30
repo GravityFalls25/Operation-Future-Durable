@@ -1,4 +1,4 @@
-import { system, world } from "@minecraft/server";
+import { system, world, ItemStack } from "@minecraft/server";
 
 // Message au lancement
 
@@ -12,7 +12,6 @@ const playersReady = new Set();
 // Garde les differents scores des scoreboards
 const progres = world.scoreboard.getObjective("progres");
 const maison_total = world.scoreboard.getObjective("maison_total");
-
 
 const cinematic = {
   "futur_1": {
@@ -33,6 +32,16 @@ const cinematic = {
     path: [
       { x: 1144, y: 55, z: 1938, rot: { x: 16.1, y: 39 }, speed: 2 },
       { x: 1077, y: 64, z: 1787, rot: { x: 21.4, y: 109.1 }, speed: 30 }
+    ]
+  },
+  "water_cleaning": {
+    area: [
+      { x: 900, y: 0, z: 1600 },  // coin 1
+      { x: 1000, y: 30, z: 1800 }    // coin 2
+    ],
+    path: [
+      { x: 911, y: 17, z: 1700, rot: { x: 18.3, y: 120 }, speed: 2 },
+      { x: 911.5, y: 17.5, z: 1700.5, rot: { x: 18.3, y: 120 }, speed: 8 }
     ]
   },
 }
@@ -167,6 +176,18 @@ const paths = {
     { x: 1886.5, y: -24, z: 695.5, speed: 0.3 },
     { x: 1877.5, y: -24, z: 674.5, speed: 0.3 },
   ],
+  "s_4_6_1": [false, { x: 899, y: -13, z: 1697, speed: 0.3 },
+    { x: 905, y: -6, z: 1701, speed: 0.3 }
+  ],
+  "s_4_8_1": [false, { x: 1000.5, y: -8, z: 900.5, speed: 0.3 },
+    { x: 992.5, y: -7, z: 910.5, speed: 0.2 },
+    { x: 980.5, y: -7, z: 932.5, speed: 0.3 },
+    { x: 978.5, y: -6, z: 934.5, speed: 0.3 },
+    { x: 974.5, y: -6, z: 937.5, speed: 0.3 },
+    { x: 969.5, y: -6, z: 935.5, speed: 0.3 },
+    { x: 968.5, y: -6, z: 926.5, speed: 0.3 }],
+  "s_5_1_1": [false, { x: 956.5, y: -30, z: 926.5, speed: 0.3 },
+    { x: 970.5, y: 30, z: 9117.5, speed: 0.3 }]
 
 };
 
@@ -243,7 +264,7 @@ function robot_iterate(lvl) {
     // ensuite on envoie la détection
 
     await dim.runCommandAsync(`scriptevent eko:a_3_${lvl}_detect`);
-  }, 10);
+  }, 5);
 
 }
 
@@ -267,7 +288,7 @@ function robot_detect(lvl) {
 
     // Vérifie l’erreur de position
     await dim.runCommandAsync(`scriptevent eko:a_3_${lvl}_checkerror`);
-  }, 1);
+  }, 5);
 }
 
 function robot_checkerror(lvl) {
@@ -282,7 +303,7 @@ function robot_checkerror(lvl) {
     await dim.runCommandAsync(`execute if entity @e[type=operation_future_durable:eko_controlled,tag=t_2025,tag=!wrong,tag=!²stopped,tag=!succes] run scriptevent eko:a_3_${lvl}_iterate`);
     await dim.runCommandAsync(`execute if entity @e[type=operation_future_durable:eko_controlled,tag=t_2025,tag=wrong, tag=!succes] run scriptevent eko:a_3_${lvl}_error`);
     await dim.runCommandAsync(`execute if entity @e[type=operation_future_durable:eko_controlled,tag=t_2025,tag=succes] run scriptevent eko:a_3_${lvl}_succes`);
-  }, 8); // 20 ticks = 1 s
+  }, 5); // 20 ticks = 1 s
 }
 function robot_error(lvl) {
   system.runTimeout(async () => {
@@ -299,7 +320,7 @@ function robot_error(lvl) {
     await dim.runCommandAsync(`tag @e[type=operation_future_durable:eko_controlled,tag=wrong,tag=t_2025] remove wrong`);
     world.sendMessage(`[DEBUG] Erreur du robot niveau ${lvl}`);
 
-  }, 10);
+  }, 8);
 
 }
 
@@ -325,7 +346,7 @@ function robot_init(lvl) {
       await dim.runCommandAsync(`fill 859 -25 1663 886 -25 1663 air`);
     }
 
-  }, 10);
+  }, 1);
 
 
 }
@@ -352,7 +373,8 @@ function robot_succes(lvl) {
     }
     else if (lvl == "3") {
       await dim.runCommandAsync(`setblock 858 -23 1695 blue_concrete`);
-      dim.runCommandAsync(`scriptevent eko:s_4_6_2`);
+      dim.runCommandAsync(`scriptevent eko:s_4_6_1`);
+
     }
   }, 1);
   if (lvl == "3") {
@@ -443,6 +465,128 @@ function unload_zone(zone) {
     world.sendMessage(`[ERREUR] Impossible de supprimer la ticking area: ${err}`);
   });
 }
+function addItemToChest(itemType, amount = 20, emballage = false, outil = false) {
+  const dim = world.getDimension("overworld");
+
+  const checks = [
+    {
+      name: "Coffre test",
+      pos: { x: 958, y: 2, z: 925 }
+    },
+  ];
+
+  for (const check of checks) {
+    const block = dim.getBlock(check.pos);
+    world.sendMessage(`Vérification de ${check.name}...`);
+
+    if (!block || block.typeId !== "minecraft:chest") {
+      player.runCommand(`/say Coffre manquant à ${JSON.stringify(check.pos)} !`);
+      continue;
+    }
+
+    const inventory = block.getComponent("minecraft:inventory");
+    if (!inventory) {
+      player.runCommand(`/say ${check.name} n'a pas d'inventaire !`);
+      continue;
+    }
+    world.sendMessage(`DEBUG: ${check.name} a un inventaire de taille ${inventory.container.size}`);
+    const container = inventory.container;
+
+
+    const itemsToAdd = amount;
+    let added = false;
+    let added_emballage = !emballage;
+    let added_outil = !outil;
+    world.sendMessage(`DEBUG: added_plastique initialisé à ${added_emballage}`);
+    world.sendMessage(`DEBUG: added_outil initialisé à ${added_outil}`);
+
+    // 1. Cherche une pile de pommes avec moins de 44
+    for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
+      const item = container.getItem(slotIndex);
+
+      if (item && item.typeId === itemType && item.amount < 44) {
+        const newAmount = Math.min(item.amount + itemsToAdd, 64);
+        item.amount = newAmount;
+        container.setItem(slotIndex, item);
+        added = true;
+
+        world.sendMessage(`DEBUG: Ajouté ${itemsToAdd} ${itemType} au slot ${slotIndex}`);
+        break;
+      }
+
+    }
+    for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
+      const item = container.getItem(slotIndex);
+      if (item && item.typeId === "operation_future_durable:emballage" && item.amount < 63 && emballage) {
+        const newAmount = Math.min(item.amount + 1, 64);
+        item.amount = newAmount;
+        container.setItem(slotIndex, item);
+        added_emballage = true;
+        world.sendMessage(`DEBUG: Ajouté 1 emballage au slot ${slotIndex}`);
+        break;
+      }
+    }
+    for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
+      const item = container.getItem(slotIndex);
+      if (item && item.typeId === "operation_future_durable:vis" && item.amount < 63 && outil) {
+        const newAmount = Math.min(item.amount + 1, 2);
+        item.amount = newAmount;
+        container.setItem(slotIndex, item);
+        added_outil = true;
+        world.sendMessage(`DEBUG: Ajouté 1 vis au slot ${slotIndex}`);
+        break;
+      }
+    }
+    world.sendMessage(`DEBUG:aaaa Après ajout, ${check.name} a maintenant ${container.size} slots`);
+    // 2. Sinon, cherche un slot vide
+    if (!added) {
+      for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
+        const item = container.getItem(slotIndex);
+        world.sendMessage(`DEBUG: Slot ${slotIndex} contient ${item ? item.typeId + ' x' + item.amount : 'rien'}`);
+        if (!item) {
+          world.sendMessage(`DEBUG: Trouvé slot vide à l'index ${slotIndex}`);
+          world.sendMessage(`DEBUG: Création de la pile ${itemType} x${itemsToAdd}`);
+          container.setItem(slotIndex, new ItemStack(itemType, itemsToAdd));
+          world.sendMessage(`DEBUG: Ajouté ${itemsToAdd} ${itemType} au slot vide ${slotIndex}`);
+          added = true;
+          break;
+        }
+      }
+    }
+    if (!added_emballage) {
+      for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
+        const item = container.getItem(slotIndex);
+        world.sendMessage(`DEBUG: Slot ${slotIndex} contient ${item ? item.typeId + ' x' + item.amount : 'rien'}`);
+        if (!item) {
+          world.sendMessage(`DEBUG: Trouvé slot vide à l'index ${slotIndex}`);
+          world.sendMessage(`DEBUG: Création de la pile operation_future_durable:emballage x 1`);
+          container.setItem(slotIndex, new ItemStack("operation_future_durable:emballage", 1));
+          world.sendMessage(`DEBUG: Ajouté 1 operation_future_durable:emballage au slot vide ${slotIndex}`);
+          added_emballage = true;
+          break;
+        }
+      }
+    }
+    if (!added_outil) {
+      for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
+        const item = container.getItem(slotIndex);
+        world.sendMessage(`DEBUG: Slot ${slotIndex} contient ${item ? item.typeId + ' x' + item.amount : 'rien'}`);
+        if (!item) {
+          world.sendMessage(`DEBUG: Trouvé slot vide à l'index ${slotIndex}`);
+          world.sendMessage(`DEBUG: Création de la pile operation_future_durable:vis x 1`);
+          container.setItem(slotIndex, new ItemStack("operation_future_durable:vis", 1));
+          world.sendMessage(`DEBUG: Ajouté 1 operation_future_durable:vis au slot vide ${slotIndex}`);
+          added_outil = true;
+          break;
+        }
+      }
+    }
+    world.sendMessage(`DEBUG: Après ajout, ${check.name} a maintenant ${container.size} slots`);
+    if (!added) {
+      world.sendMessage(`DEBUG: Pas de place pour ajouter ${itemsToAdd} ${itemType} dans ${check.name}`);
+    }
+  }
+}
 
 function cinematics(zoneName, wait) {
   const zoneData = cinematic[zoneName];
@@ -484,6 +628,14 @@ function cinematics(zoneName, wait) {
 
     // incrémente le temps pour le prochain point
     totalTime += index === 0 ? 20 : speed * 20; // 20 ticks = 1 seconde
+
+    if (zoneName === "water_cleaning") {
+      system.runTimeout(async () => {
+        const dim = world.getDimension("overworld");
+        await dim.runCommandAsync(`fill 900 15 1693 905 7 1698 air replace lime_stained_glass`);
+      }, 100);
+      world.sendMessage(`[DEBUG] Clear eau`);
+    }
   });
 
   system.runTimeout(async () => {
@@ -505,6 +657,13 @@ function cinematics(zoneName, wait) {
 
 
 world.afterEvents.itemUse.subscribe((event) => {
+  if (
+    event.itemStack &&
+    ["minecraft:carrot", "minecraft:egg", "minecraft:beef", "minecraft:chicken", 'minecraft:apple', "minecraft:bread", "minecraft:salmon", "minecraft:potato"]
+      .includes(event.itemStack.typeId)
+  ) {
+    event.cancel = true;
+  }
   // Vérifie que c’est bien un bâton
   if (event.itemStack?.typeId === "minecraft:stick") {
     event.cancel = true;
@@ -627,6 +786,91 @@ system.afterEvents.scriptEventReceive.subscribe(ev => {
         robot_succes(lvl);
       }
     }
+    else if (ev.id.split("_")[1] == "4") {
+      const item = ev.id.split("_")[2];
+      switch (item) {
+        case "eau": {
+          addItemToChest("operation_future_durable:eau", 20, true);
+          break;
+        }
+        case "pomme": {
+          addItemToChest("minecraft:apple", 20, true);
+          break;
+        }
+        case "poire": {
+          addItemToChest("operation_future_durable:poire", 20, true);
+          break;
+        }
+        case "banane": {
+          addItemToChest("operation_future_durable:banane", 20);
+          break;
+        }
+        case "aubergine": {
+          addItemToChest("operation_future_durable:aubergine", 20);
+          break;
+        }
+        case "poivron": {
+          addItemToChest("operation_future_durable:poivron", 20);
+          break;
+        }
+        case "carotte": {
+          addItemToChest("minecraft:carrot", 20);
+          break;
+        }
+        case "pain": {
+          addItemToChest("minecraft:bread", 20);
+          break;
+        }
+        case "riz": {
+          addItemToChest("operation_future_durable:riz", 20, true);
+          break;
+        }
+        case "patate": {
+          addItemToChest("minecraft:potato", 20);
+          break;
+        }
+        case "pate": {
+          addItemToChest("operation_future_durable:pate", 20, true);
+          break;
+        }
+        case "lait": {
+          addItemToChest("operation_future_durable:lait", 20, true);
+          break;
+        }
+        case "fromage": {
+          addItemToChest("operation_future_durable:fromage", 20, true, true);
+          break;
+        }
+        case "yaourt": {
+          addItemToChest("operation_future_durable:yaourt", 20, true);
+          break;
+        }
+        case "poulet": {
+          addItemToChest("minecraft:chicken", 20, true);
+          break;
+        }
+        case "boeuf": {
+          addItemToChest("minecraft:beef", 20, true);
+          break;
+        }
+        case "oeuf": {
+          addItemToChest("operation_future_durable:oeuf", 20);
+          break;
+        }
+        case "saumon": {
+          addItemToChest("minecraft:salmon", 20);
+          break;
+        }
+        case "huileolive": {
+          addItemToChest("operation_future_durable:huile_olive", 20);
+          break;
+        }
+      }
+    }
+
+
+
+
   }
 
   if (ev.id.startsWith("eko:s")) {
@@ -887,13 +1131,13 @@ system.afterEvents.scriptEventReceive.subscribe(ev => {
       case "s_3_2_1": {
         system.runTimeout(async () => {
           await world.getDimension("overworld").runCommandAsync(
-            `give @a operation_future_durable:thermometre`
+            `give @a operation_future_durable:thermometre 1 0 {"minecraft:item_lock":{"mode":"lock_in_inventory"}}`
           );
           await world.getDimension("overworld").runCommandAsync(
-            `give @a operation_future_durable:multimetre`
+            `give @a operation_future_durable:multimetre 1 0 {"minecraft:item_lock":{"mode":"lock_in_inventory"}}`
           );
           await world.getDimension("overworld").runCommandAsync(
-            `give @a operation_future_durable:compteur_eau`
+            `give @a operation_future_durable:compteur_eau 1 0 {"minecraft:item_lock":{"mode":"lock_in_inventory"}}`
           );
         }, 5);
       }
@@ -1028,11 +1272,37 @@ system.afterEvents.scriptEventReceive.subscribe(ev => {
         break;
 
       }
+      case "s_4_6_1": {
+        cinematics("water_cleaning", 20);
+        tpPlayersDispersed({ x: 877.5, y: -24.00, z: 1676.5 }, -169, 100, 2);
+
+        dialogue(sceneName, 300);
+        break;
+
+      }
+
+      case "s_4_7_1": {
+        system.runTimeout(async () => {
+          await world.getDimension("overworld").runCommandAsync(
+            `camera @a fade time 0.5 1.5 2.5 color 0 0 0`
+          );
+        }, 10);
+        tpPlayersDispersed({ x: 1002.5, y: -8.00, z: 903.5 }, 157, 100, 2);
+        dialogue(sceneName, 200);
+        break;
+
+      }
+      case "s_4_8_1": {
+        followPath(sceneName);
+        dialogue(sceneName, 200);
+        break;
+
+      }
     }
   }
   // Reset d’un chemin
   if (ev.id.startsWith("eko:r")) {
-    const max_chapitre = 4;
+    const max_chapitre = 5;
     const max_checkpoint = 11;
     const sceneName = "s_" + ev.id.split("_").slice(1, 4).join("_");
     const overworld = world.getDimension("overworld");
@@ -1132,10 +1402,25 @@ system.afterEvents.scriptEventReceive.subscribe(ev => {
           robot_init("3");
           robot_init("2");
           robot_init("1");
-
-
-
         }
+        if (sceneName_temp === "s_4_6_1") {
+          system.runTimeout(() =>
+            overworld.runCommandAsync(`clone 899 -13 1697 905 -6 1701 899 8 1694`)
+          );
+        }
+        if( sceneName_temp === "s_5_1_1"){
+          system.runTimeout(() => overworld.runCommandAsync(`clone 959 9 925 959 9 924 958 2 924`));
+
+        for (let i = 0; i < 5; i++) {
+          system.runTimeout(() => {
+            overworld.runCommandAsync(
+              `clone 956 -8 928 956 -8 928 956 ${-6 + i} 928`
+            );
+            world.sendMessage(`[DEBUG] clone 956 ${-6 + i} 928`);
+          }, i + 2); // petit décalage pour éviter tout en même tick
+        }
+        system.runTimeout(() => overworld.runCommandAsync(`clone 956 -8 928 956 -8 928 956 -3 924`));
+      }
 
         // Téléportation si nécessaire
         if (tpFlag) {

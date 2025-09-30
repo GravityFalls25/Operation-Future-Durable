@@ -103,29 +103,60 @@ function verifyChests(player) {
   // 📌 Définir les coffres + leurs contenus attendus
   const checks = [
     {
-      name: "Coffre Fruits",
-      pos: { x: 10, y: -60, z: 0 },
+      name: "Coffre Eau",
+      pos: { x: 956, y: -6, z: 928 },
       expected: [
-        { typeId: "minecraft:apple", amount: 64, here: false },
-        { typeId: "minecraft:melon_block", amount: 64, here: false },
+        { typeId: "operation_future_durable:eau", amount: 120, here: false },
       ],
     },
     {
-      name: "Coffre Légumes",
-      pos: { x: 13, y: -60, z: 0 },
+      name: "Coffre Fruits et Legumes",
+      pos: { x: 956, y: -5, z: 928 },
       expected: [
-        { typeId: "minecraft:carrot", amount: 64, here: false },
-        { typeId: "minecraft:potato", amount: 64, here: false },
+        { typeId: "minecraft:apple", amount: 30, here: false },
+        { typeId: "minecraft:carrot", amount: 30, here: false },
+        { typeId: "operation_future_durable:aubergine", amount: 30, here: false },
+        { typeId: "operation_future_durable:banane", amount: 30, here: false },
+        { typeId: "operation_future_durable:poire", amount: 30, here: false },
+         { typeId: "operation_future_durable:poivron", amount: 30, here: false },
+      ],
+    },
+    {
+      name: "Coffre Féculents",
+      pos: { x: 956, y: -4, z: 928 },
+      expected: [
+        { typeId: "minecraft:bread", amount: 20, here: false },
+        { typeId: "minecraft:potato", amount: 20, here: false },
+        { typeId: "operation_future_durable:pate", amount: 20, here: false },
+        { typeId: "operation_future_durable:riz", amount: 20, here: false },
+      ],
+    },
+    {
+      name: "Coffre produit laitier",
+      pos: { x: 956, y: -3, z: 928 },
+      expected: [
+        { typeId: "operation_future_durable:lait", amount: 20, here: false },
+        { typeId: "operation_future_durable:fromage", amount: 20, here: false },
+        { typeId: "operation_future_durable:yaourt", amount: 20, here: false },
       ],
     },
     {
       name: "Coffre Viandes",
-      pos: { x: 16, y: -60, z: 0 },
+      pos: { x: 956, y: -3, z: 924 },
       expected: [
-        { typeId: "minecraft:beef", amount: 64, here: false },
-        { typeId: "minecraft:chicken", amount: 64, here: false },
+        { typeId: "minecraft:beef", amount: 20, here: false },
+        { typeId: "minecraft:chicken", amount: 20, here: false },
+        { typeId: "operation_future_durable:oeuf", amount: 20, here: false },
+        { typeId: "minecraft:salmon", amount: 20, here: false },
       ],
-    }
+    },
+    {
+      name: "Coffre matiere grasse",
+      pos: { x: 956, y: -2, z: 928 },
+      expected: [
+        { typeId: "operation_future_durable:huile_olive", amount: 10, here: false },
+      ],
+    },
   ]
 
   let allGood = true;
@@ -151,52 +182,40 @@ function verifyChests(player) {
     // Remettre tous les `here` à false au cas où
     check.expected.forEach(exp => exp.here = false);
 
-    let chestGood = true;
+    const counts = {};
+for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
+  const item = container.getItem(slotIndex);
+  if (!item) continue;
+  counts[item.typeId] = (counts[item.typeId] || 0) + item.amount;
+}
 
-    for (let slotIndex = 0; slotIndex < container.size; slotIndex++) {
-      const item = container.getItem(slotIndex); 
-      if (!item) continue;
-
-      let matched = false;
-
-      for (const exp of check.expected) {
-        if (item.typeId === exp.typeId && item.amount === exp.amount && !exp.here) {
-          exp.amount -= item.amount; // Décrémenter la quantité attendue
-          if (exp.amount === 0) {
-            exp.here = true; // Marquer comme trouvé
-          }
-          matched = true;
-          break;
-        }
-      }
-
-      if (!matched) {
-        chestGood = false; // Un item non prévu trouvé
-        break;
-      }
-    }
-
-    // Vérifier que tous les attendus sont là
-    for (const exp of check.expected) {
-      if (!exp.here) {
-        chestGood = false;
-        break;
-      }
-    }
-
-    if (chestGood) {
-      player.runCommand(`/say ✅ ${check.name} correct !`);
-    } else {
-      player.runCommand(`/say ❌ ${check.name} incorrect !`);
-      allGood = false;
-    }
+// Vérifier par rapport aux attendus
+let chestGood = true;
+for (const exp of check.expected) {
+  const actual = counts[exp.typeId] || 0;
+  if (actual !== exp.amount) {
+    chestGood = false;
+    world.sendMessage(
+      `DEBUG: ${check.name} attendait ${exp.amount} ${exp.typeId}, trouvé ${actual}`
+    );
   }
+}
 
-  if (allGood) {
-    player.runCommand("/say ✅ Tous les coffres sont corrects !");
-  } else {
-    player.runCommand("/say ❌ Des coffres sont incorrects !");
+// Vérifier qu'il n'y a pas d'intrus
+for (const typeId in counts) {
+  if (!check.expected.some(exp => exp.typeId === typeId)) {
+    chestGood = false;
+    world.sendMessage(`DEBUG: ${check.name} contient un item inattendu : ${typeId} x${counts[typeId]}`);
   }
+}
+
+if (chestGood) {
+  player.runCommand(`/say ✅ ${check.name} correct !`);
+} else {
+  player.runCommand(`/say ❌ ${check.name} incorrect !`);
+  allGood = false;
+}
+}
 }
 
 function showRoomData(player, checker) {

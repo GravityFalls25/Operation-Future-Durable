@@ -542,7 +542,7 @@
       {
         "scene_tag": "s_3_1_1",
         "npc_name": "EKO",
-        "text": "Mission : Vous allez devoir rentrer dans la maison et utiliser differents outils : Un thermometre pour mesurer la temperature et un multimetre pour calculer les pertes d'energies. Vous devrez trouver 3 elements problematiques. Une fois que vous les aurez trouvé, revenez me voir.",
+        "text": "Mission : Vous allez devoir rentrer dans la maison et utiliser differents outils : Un thermometre pour mesurer la temperature et un multimetre pour calculer les pertes d'energies et un compteur d'eau pour mesurer les pertes d'eau. Vous devrez trouver 7 elements problematiques. Une fois que vous les aurez trouvé, revenez me voir.",
         "buttons": [
           {
             "name": "Démarrer ",
@@ -822,6 +822,61 @@
             "commands": [
               "/scoreboard players add player progres 1",
               "/scriptevent eko:c_4_3"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_6_1",
+        "npc_name": "EKO",
+        "text": "Retournons en 2100 voir si l'eau est bien propre maintenant.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_4_6"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_7_1",
+        "npc_name": "EKO",
+        "text": "Regarde cette eau ! Elle est si claire. ON y est presque !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/dialogue open @s @initiator s_4_7_2"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_7_2",
+        "npc_name": "EKO",
+        "text": "Tu es prêt pour la prochaine activité ? Suis moi.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_4_7"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_4_8_1",
+        "npc_name": "EKO",
+        "text": "MIssion : ",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_4_8"
             ]
           }
         ]

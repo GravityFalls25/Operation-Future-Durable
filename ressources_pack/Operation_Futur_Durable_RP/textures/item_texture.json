@@ -10,6 +10,48 @@
 		},
 		"operation_future_durable:compteur_eau": {
 			"textures": "textures/items/compteur_eau"
+		},
+		"operation_future_durable:aubergine": {
+			"textures": "textures/items/aubergine"
+		},
+		"operation_future_durable:banane": {
+			"textures": "textures/items/banane"
+		},
+		"operation_future_durable:fromage": {
+			"textures": "textures/items/fromage"
+		},
+		"operation_future_durable:huile_olive": {
+			"textures": "textures/items/huile_olive"
+		},
+		"operation_future_durable:lait": {
+			"textures": "textures/items/lait"
+		},
+		"operation_future_durable:pate": {
+			"textures": "textures/items/pate"
+		},
+		"operation_future_durable:poire": {
+			"textures": "textures/items/poire"
+		},
+		"operation_future_durable:poivron": {
+			"textures": "textures/items/poivron"
+		},
+		"operation_future_durable:riz": {
+			"textures": "textures/items/riz"
+		},
+		"operation_future_durable:yaourt": {
+			"textures": "textures/items/yaourt"
+		},
+		"operation_future_durable:eau": {
+			"textures": "textures/items/eau"
+		},
+		"operation_future_durable:emballage": {
+			"textures": "textures/items/emballage"
+		},
+		"operation_future_durable:vis": {
+			"textures": "textures/items/vis"
+		},
+		"operation_future_durable:oeuf": {
+			"textures": "textures/items/oeuf"
 		}
 	}
 }

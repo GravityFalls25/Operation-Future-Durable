@@ -21,14 +21,17 @@ item.operation_future_durable:riz=Riz
 item.operation_future_durable:yaourt=Yaourt
 item.operation_future_durable:aubergine=Aubergine
 item.operation_future_durable:eau=Eau
+item.operation_future_durable:emballage=Emballage
+item.operation_future_durable:vis=Vis
+item.operation_future_durable:oeuf=Oeuf
 
 
-item.itemLock.cantDrop=:Can't Drop Items can't be:
-item.itemLock.cantMove=:Can't Move Items can't be:
-item.itemLock.hoverText.cantBe.moved=moved
-item.itemLock.hoverText.cantBe.dropped=dropped
-item.itemLock.hoverText.cantBe.removed=removed
-item.itemLock.hoverText.cantBe.craftedWith=crafted with
-item.itemLock.keepOnDeath=This item is not lost on death
-item.itemLock.popupNotice.cantDrop=:Can't Drop Items can't be: dropped, removed, crafted with
-item.itemLock.popupNotice.cantMove=:Can't Move Items can't be: moved, dropped, removed, crafted with
+item.itemLock.cantDrop= 
+item.itemLock.cantMove= 
+item.itemLock.hoverText.cantBe.moved= 
+item.itemLock.hoverText.cantBe.dropped= 
+item.itemLock.hoverText.cantBe.removed= 
+item.itemLock.hoverText.cantBe.craftedWith= 
+item.itemLock.keepOnDeath= 
+item.itemLock.popupNotice.cantDrop= 
+item.itemLock.popupNotice.cantMove= 

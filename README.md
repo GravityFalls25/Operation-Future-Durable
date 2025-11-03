@@ -1,1 +1,3 @@
-# Operation-Future-Durable
+Seul le dossier behaviours_pack/Operation_Futur_Durable
+et le dossier ressoures_pack/Operation_Futur_Durable_RP 
+sont nessessaire

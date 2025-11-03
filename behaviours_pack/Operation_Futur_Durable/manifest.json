@@ -10,7 +10,7 @@
 	"modules": [
 		{
 			"description": "Behavior",
-			"version": [1, 0, 4],
+			"version": [1, 0, 5],
 			"uuid": "610d38d0-ff81-4ed4-8eda-7ea710c6a0fc",
 			"type": "data"
 		},
@@ -18,7 +18,7 @@
 			"description": "Server Script",
 			"type": "script",
 			"uuid": "c7f0255c-a53b-42fd-aef0-ffef81d27bd3",
-			"version": [1, 0, 0],
+			"version": [1, 0, 1],
 			"entry": "scripts/index.js"
 		}
 	],

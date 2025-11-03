@@ -389,15 +389,34 @@
           {
             "name": "Reset",
             "commands": [
-              "/fill 994 -5 2174 1016 24 2179 air",
-              "/clone 993 -10 2174 994 -10 2174 993 -5 2174",
-              "/clear @a"
+               "/dialogue open @s @initiator s_2_4_1_confirm"
             ]
           },
           {
             "name": "Valider",
             "commands": [
               "/scriptevent eko:VerifyStructure"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_2_4_1_confirm",
+        "npc_name": "EKO",
+        "text": "Tu es sûr de vouloir reset ?",
+        "buttons": [
+          {
+            "name": "Reset",
+            "commands": [
+              "/fill 994 -5 2174 1016 24 2179 air",
+              "/clone 993 -10 2174 994 -10 2174 993 -5 2174",
+              "/clear @a"
+            ]
+          },
+          {
+            "name": "Annuler",
+            "commands": [
+              
             ]
           }
         ]
@@ -870,15 +889,138 @@
       {
         "scene_tag": "s_4_8_1",
         "npc_name": "EKO",
-        "text": "MIssion : ",
+        "text": "Mission : On va d'abord commencer par remplir ces coffres comme il faut. Vous devrez classer les aliments selon la pyramide alimentaire qui est là.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+              "/dialogue open @s @initiator s_4_8_2"
+            ]
+          }
+        ]
+      },
+       {
+        "scene_tag": "s_4_8_2",
+        "npc_name": "EKO",
+        "text": "Séparez vous, vous voyez l'echelle qu'il y a ici ? En bas se trouve l'endroit où vous pourrez importez tous les aliments qu'il faut. En haut se trouve l'endroit où arriveront les aliments",
         "buttons": [
           {
             "name": "Ok",
             "commands": [
               "/scoreboard players add player progres 1",
-              "/scriptevent eko:c_4_8"
+              "/scriptevent eko:c_5_0"
             ]
           }
+        ]
+      },
+      {
+        "scene_tag": "s_5_1_1",
+        "npc_name": "EKO",
+        "text": "Voici les consignes : Vous devez mettre au bons endroits : 120 bouteilles d'eau , 30 fruits et légumes de chaque, 20 féculents de chaque, 20 produits laitiers de chaque, 20 viandes/poissons/oeufs de chaque et 10 matieres grasses. Quand vous avez fini, cliquez sur moi et sur le bouton valider. Vous pouvez toujours revenir vers moi pour revoir la liste complete. Si vous avez un souci, n'hésitez pas à demander au formateur.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+             
+            ]
+          },
+          {
+            "name": "Valider",
+            "commands": [
+              "/scriptevent eko:a_4_pyramide"
+            ]
+          }
+        ]
+      },
+      {
+        "scene_tag": "s_5_2_1",
+        "npc_name": "EKO",
+        "text": "Ok super mais attention, je vois qu'il te reste encore des items, il va faloir s'en séparer correctement.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+             "/dialogue open @s @initiator s_5_2_2"
+            ]
+          }
+
+        ]
+      },
+      {
+        "scene_tag": "s_5_2_2",
+        "npc_name": "EKO",
+        "text": "Derrière moi tu trouveras 4 nouveaux coffres. Un coffre pour le compost, un pour le recyclage, un pour la réusilisation, et enfin un pour ce qui reste. A vous de tout ranger convenablement. Quand vous avez fini, cliquez sur moi et sur le bouton valider. Si vous avez un souci, n'hésitez pas à demander au formateur.",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+             
+            ]
+          },
+          {
+            "name": "Valider",
+            "commands": [
+              "/scriptevent eko:a_4_trash"
+            ]
+          }
+
+        ]
+      },
+      {
+        "scene_tag": "s_5_3_1",
+        "npc_name": "EKO",
+        "text": "Tout est bien classé c'est formidable, on va pouvoir tellement revaloriser tout cela. Mais on aurait mieux fait de moins produire, au moins on aurait eu moins de déchets.",
+        "buttons": [
+          {
+            "name": "Oui",
+            "commands": [
+             "/dialogue open @s @initiator s_5_3_2"
+            ]
+          }
+
+        ]
+      },
+      {
+        "scene_tag": "s_5_3_2",
+        "npc_name": "EKO",
+        "text": "On tout cas, on a fait ce qu'il fallait maintenant, retournons dans le futur !",
+        "buttons": [
+          {
+            "name": "Oui",
+            "commands": [
+              "/scoreboard players add player progres 1",
+              "/scriptevent eko:c_5_3"
+            ]
+          }
+
+        ]
+      },
+      {
+        "scene_tag": "s_5_4_1",
+        "npc_name": "EKO",
+        "text": "Le futur est sauvé, Merci infiniment. Vous avez réussi !",
+        "buttons": [
+          {
+            "name": "Ce n'était rien",
+            "commands": [
+              "/dialogue open @s @initiator s_5_4_2"
+            ]
+          }
+
+        ]
+      },
+      {
+        "scene_tag": "s_5_4_2",
+        "npc_name": "EKO",
+        "text": "Vous pouvez maintenant explorer la ville et voir tout le bien que vous avez fait !",
+        "buttons": [
+          {
+            "name": "Ok",
+            "commands": [
+
+            ]
+          }
+
         ]
       }
     ]
